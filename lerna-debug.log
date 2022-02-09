@@ -4,7 +4,7 @@
 0 silly argv   '$0': 'C:\\Program Files\\nodejs\\node_modules\\lerna\\cli.js'
 0 silly argv }
 1 notice cli v4.0.0
-2 verbose rootPath F:\项目\my项目\shi-cli\lerna-cli-dev\bani-cli-dev
+2 verbose rootPath F:\项目\my项目\shi-cli\lerna-cli-dev
 3 info current version 1.0.0
 4 silly isAnythingCommitted
 5 verbose isAnythingCommitted 1
@@ -13,7 +13,7 @@
 8 silly remoteBranchExists
 9 silly isBehindUpstream
 10 error Error: Command failed with exit code 1: git remote update
-10 error fatal: unable to access 'https://github.com/IamBani/bani-cli.git/': OpenSSL SSL_read: Connection was reset, errno 10054
+10 error fatal: unable to access 'https://github.com/IamBani/bani-cli.git/': Failed to connect to github.com port 443 after 21061 ms: Timed out
 10 error error: Could not fetch origin
 10 error Fetching origin
 10 error     at makeError (C:\Users\SBW\AppData\Roaming\nvm\v16.5.0\node_modules\lerna\node_modules\execa\lib\error.js:60:11)
