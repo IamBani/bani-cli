@@ -1,7 +1,12 @@
 'use strict';
 
-module.exports = utils;
+module.exports = { utils,sum };
 
-function utils() {
+function utils(a,b) {
     // TODO
+    return a-b
+}
+
+function sum (a,b) {
+  return a+b
 }
