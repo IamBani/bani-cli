@@ -23,8 +23,11 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
+    "@bani-cli/log": "file:../../utils/log",
     "@bani-cli/utils": "file:../../utils/utils",
+    "colors": "^1.4.0",
     "import-local": "^3.1.0",
-    "npmlog": "^6.0.1"
+    "npmlog": "^6.0.1",
+    "semver": "^7.3.5"
   }
 }
