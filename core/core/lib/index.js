@@ -2,10 +2,9 @@
 
 const colors = require('colors')
 const semver = require('semver')
-const log = require("@bani-cli/log");
+const {log,npmlog} = require("@bani-cli/log");
 const pkg = require("../package.json")
-const { LOWEST_NODE_VERSION } = require("./const");
-
+const { LOWEST_NODE_VERSION,a } = require("./const");
 module.exports = core;
 
 function core() {
@@ -19,5 +18,6 @@ function checkNodeVersion () {
 }
 
 function checkPkgVersion () {
+  npmlog.debugger('deb',pkg.version)
   log(pkg.version)
 }
