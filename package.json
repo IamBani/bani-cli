@@ -2,9 +2,19 @@
   "name": "root",
   "private": true,
   "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "eslint": "^8.21.0",
     "lerna": "^5.4.0"
   },
   "dependencies": {
-    "@bani-cli/utils": "^1.0.2"
+    "@bani-cli/utils": "^1.0.2",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "lint": "lint-staged"
   }
 }
