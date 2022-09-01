@@ -23,8 +23,8 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@bani-cli/log": "file:../../utils/log",
-    "@bani-cli/utils": "file:../../utils/utils",
+    "@bani-cli/log": "1.0.2",
+    "@bani-cli/utils": "1.0.2",
     "@bani-cli/commands":"1.0.2",
     "chalk": "4.1.2",
     "dotenv":"16.0.2",

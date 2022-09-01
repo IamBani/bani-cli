@@ -1,17 +1,22 @@
 'use strict';
 const os = require('os')
 const path = require('path')
+const fs = require('fs');
 
 const chalk = require('chalk')
 const semver = require('semver')
-const {log,npmlog} = require("@bani-cli/log");
-const pkg = require("../package.json")
-const { LOWEST_NODE_VERSION} = require("./const")
-const { sum } = require("@bani-cli/utils")
-const { commands } = require("@bani-cli/commands")
 const rootCheck = require('root-check')
 const dotenv = require('dotenv')
-const minimist = require('minimist')
+const minimist = require('minimist');
+
+const pkg = require("../package.json")
+const { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME} = require("./const")
+
+const {log,npmlog} = require("@bani-cli/log");
+const { isFile } = require("@bani-cli/utils")
+const { commands } = require("@bani-cli/commands")
+
+
 module.exports = core;
 
 function core() {
@@ -29,20 +34,41 @@ function core() {
 }
 
 function checkEnv () {
-  
+  const dotpath = path.resolve(os.homedir(), '.env')
+  let config;
+  if (isFile(dotpath)) {
+     config = dotenv.config({
+        path: dotpath
+      })
+  } else {
+    createDefaultConfig()
+  }
+  console.log(process.env);
 }
 
+function createDefaultConfig () {
+  const userHome = os.homedir()
+  const cliConfig = {
+    home:userHome
+  }
+  if (process.env.CLI_HOME) {
+    cliConfig['cliHome'] = path.join(userHome,process.env.CLI_HOME)
+  } else {
+    cliConfig['cliHome'] = path.join(userHome,DEFAULT_CLI_HOME)
+  }
+  for (const key in cliConfig) {
+    process.env[key] = cliConfig[key]
+  }
+}
 
 function checkInputArgs () {
   const args = minimist(process.argv.slice(2))
-  console.log(args);
   if (args.debug) {
     process.env.LOG_LEVEL = 'verbose'
   } else {
     process.env.LOG_LEVEL = 'info'
   }
   npmlog.level = process.env.LOG_LEVEL
-  npmlog.verbose('de1','test')
 }
 
 

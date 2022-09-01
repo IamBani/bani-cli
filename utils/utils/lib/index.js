@@ -1,12 +1,7 @@
 'use strict';
+const {isFile} =require('./stat')
 
-module.exports = { utils,sum };
 
-function utils(a,b) {
-    // TODO
-    return a-b
-}
+module.exports = { isFile };
 
-function sum (a,b) {
-  return a+b
-}
+
