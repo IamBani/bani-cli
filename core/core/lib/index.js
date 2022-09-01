@@ -15,7 +15,7 @@ const { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME} = require("./const")
 const {log,npmlog} = require("@bani-cli/log");
 const { isFile } = require("@bani-cli/utils")
 const { commands } = require("@bani-cli/commands")
-
+const {getNpmInfo} = require("@bani-cli/get-npm-info")
 
 module.exports = core;
 
@@ -28,9 +28,16 @@ function core() {
     checkUserHome()
     checkInputArgs()
     checkEnv()
+    checkGlobalUpdate()
   } catch (e) {
     npmlog.error(e.message)
   }
+}
+async function checkGlobalUpdate() {
+  const version = pkg.version
+  const name = pkg.name
+  const res = await getNpmInfo(name)
+  console.log(res,111)
 }
 
 function checkEnv () {
@@ -43,7 +50,7 @@ function checkEnv () {
   } else {
     createDefaultConfig()
   }
-  console.log(process.env);
+  // console.log(process.env);
 }
 
 function createDefaultConfig () {
