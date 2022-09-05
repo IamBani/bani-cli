@@ -15,7 +15,7 @@ const { LOWEST_NODE_VERSION, DEFAULT_CLI_HOME} = require("./const")
 const {log,npmlog} = require("@bani-cli/log");
 const { isFile } = require("@bani-cli/utils")
 const { commands } = require("@bani-cli/commands")
-const {getNpmInfo} = require("@bani-cli/get-npm-info")
+const {getNpmSemverVersions} = require("@bani-cli/get-npm-info")
 
 module.exports = core;
 
@@ -36,8 +36,14 @@ function core() {
 async function checkGlobalUpdate() {
   const version = pkg.version
   const name = pkg.name
-  const res = await getNpmInfo(name)
-  console.log(res,111)
+  const res = await getNpmSemverVersions(name, version)
+  let lastVersion;
+  if (res.length && (lastVersion = res[0]) && semver.gt(lastVersion,version)) {
+    npmlog.warn(chalk.yellow(`请手动更新${name},当前版本是${version},最新版本是${lastVersion}
+    更新命令: npm install -g ${name}`
+    ))
+  }
+
 }
 
 function checkEnv () {

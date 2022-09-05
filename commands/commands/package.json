@@ -22,5 +22,8 @@
   },
   "bugs": {
     "url": "https://github.com/IamBani/bani-cli/issues"
+  },
+  "dependencies": {
+    "commander": "^9.4.0"
   }
 }

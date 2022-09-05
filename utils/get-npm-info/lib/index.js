@@ -11,18 +11,37 @@ function getNpmInfo(npmName, registry) {
     let registryUrl = registry || getRegistry()
     const npmUrlJoin = urlJoin(registryUrl, npmName)
     return axios.get(npmUrlJoin).then(res => {
-        console.log(res.data)
         if (res.status === 200) {
             return res.data
         }
     }).catch(err => {
         Promise.reject(err)
     })
-    
 }
 
 function getRegistry(isDriginal = false) {
     return isDriginal?'https://registry.npmjs.org':'https://registry.npm.taobao.org'
 }
 
-module.exports = { getNpmInfo };
+async function getNpmVersions (npmName, registry) {
+  let res = await getNpmInfo(npmName, registry)
+  if (res) {
+    return Object.keys(res.versions)
+  } else {
+    return []
+  }
+}
+
+function getSemverVersions (baseVersions,versions) {
+  return versions.filter((version) => {
+      return semver.satisfies(version,`^${baseVersions}`)
+    }).sort((a,b)=>semver.gt(b,a))
+}
+
+async function getNpmSemverVersions (npmlog,baseVersions,registry) {
+  const versions = await getNpmVersions(npmlog,registry)
+  const newVersions = getSemverVersions(baseVersions, versions)
+  return newVersions
+}
+
+module.exports = { getNpmInfo,getNpmVersions,getSemverVersions,getNpmSemverVersions };
