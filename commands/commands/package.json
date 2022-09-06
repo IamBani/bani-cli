@@ -24,6 +24,8 @@
     "url": "https://github.com/IamBani/bani-cli/issues"
   },
   "dependencies": {
-    "commander": "^9.4.0"
+    "commander": "^9.4.0",
+    "chalk": "4.1.2",
+    "@bani-cli/log": "1.0.2"
   }
 }

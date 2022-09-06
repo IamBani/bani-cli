@@ -29,6 +29,7 @@ function core() {
     checkInputArgs()
     checkEnv()
     checkGlobalUpdate()
+    commands(pkg)
   } catch (e) {
     npmlog.error(e.message)
   }
