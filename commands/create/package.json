@@ -1,8 +1,8 @@
 {
-  "name": "@bani-cli/commands",
+  "name": "@bani-cli/create",
   "version": "1.0.2",
   "description": "> TODO: description",
-  "author": "bani <13972186114@139.com>",
+  "author": "IamBani <13972186114@139.com>",
   "homepage": "https://github.com/IamBani/bani-cli#readme",
   "license": "ISC",
   "main": "lib/index.js",
@@ -18,15 +18,9 @@
     "url": "git+https://github.com/IamBani/bani-cli.git"
   },
   "scripts": {
-    "test": "node ./__tests__/commands.test.js"
+    "test": "node ./__tests__/create.test.js"
   },
   "bugs": {
     "url": "https://github.com/IamBani/bani-cli/issues"
-  },
-  "dependencies": {
-    "@bani-cli/create": "^1.0.2",
-    "@bani-cli/log": "1.0.2",
-    "chalk": "4.1.2",
-    "commander": "^9.4.0"
   }
 }

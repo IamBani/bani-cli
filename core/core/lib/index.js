@@ -18,8 +18,7 @@ const { commands } = require("@bani-cli/commands")
 const {getNpmSemverVersions} = require("@bani-cli/get-npm-info")
 
 module.exports = core;
-
-function core() {
+function core () {
     // TODO
   try {
     checkPkgVersion()
