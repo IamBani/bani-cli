@@ -27,6 +27,7 @@
     "@bani-cli/create": "^1.0.2",
     "@bani-cli/log": "1.0.2",
     "chalk": "4.1.2",
-    "commander": "^9.4.0"
+    "commander": "^9.4.0",
+    "leven":"3.1.0"
   }
 }
