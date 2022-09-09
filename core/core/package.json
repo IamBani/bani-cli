@@ -27,6 +27,7 @@
     "@bani-cli/utils": "1.0.2",
     "@bani-cli/commands":"1.0.2",
     "@bani-cli/get-npm-info":"1.0.2",
+    "@bani-cli/exec":"1.0.2",
     "chalk": "4.1.2",
     "dotenv":"16.0.2",
     "root-check":"1.0.0",
