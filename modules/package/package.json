@@ -1,5 +1,5 @@
 {
-  "name": "@bani-cli/create",
+  "name": "@bani-cli/package",
   "version": "1.0.2",
   "description": "> TODO: description",
   "author": "IamBani <13972186114@139.com>",
@@ -13,17 +13,17 @@
   "files": [
     "lib"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/IamBani/bani-cli.git"
   },
   "scripts": {
-    "test": "node ./__tests__/create.test.js"
+    "test": "node ./__tests__/@bani/package.test.js"
   },
   "bugs": {
     "url": "https://github.com/IamBani/bani-cli/issues"
-  },
-  "dependencies": {
-    "@bani-cli/exec":"1.0.2"
   }
 }

@@ -18,8 +18,7 @@ function commands (pkg) {
     .usage('<app-name>')
     .option('-f, --force','是否强制克隆')
     .action(function (name, options) {
-      console.log(arguments[2].parent._optionValues); 
-      require("@bani-cli/create")(name,options)
+      require("@bani-cli/create")(arguments)
     }).showHelpAfterError()
   
   
