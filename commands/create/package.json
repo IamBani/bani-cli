@@ -24,6 +24,7 @@
     "url": "https://github.com/IamBani/bani-cli/issues"
   },
   "dependencies": {
-    "@bani-cli/exec":"1.0.2"
+    "@bani-cli/package":"1.0.2",
+    "pkg-dir":"5.0.0"
   }
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-const { isObject } = require("../../../utils/utils/lib/shared");
+const { isObject } = require("@bani-cli/utils");
 
 class Packages{
   constructor(options) {
@@ -11,9 +11,9 @@ class Packages{
     
     this.storePath = options?.storePath
 
-    this.packageName = options?.name
+    this.packageName = options?.packageName
 
-    this.packageVersion = options?.version
+    this.packageVersion = options?.packageVersion
   }
   exists () {
     
