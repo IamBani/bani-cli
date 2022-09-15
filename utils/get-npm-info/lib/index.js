@@ -44,4 +44,4 @@ async function getNpmSemverVersions (npmlog,baseVersions,registry) {
   return newVersions
 }
 
-module.exports = { getNpmInfo,getNpmVersions,getSemverVersions,getNpmSemverVersions };
+module.exports = { getNpmInfo,getRegistry,getNpmVersions,getSemverVersions,getNpmSemverVersions };
