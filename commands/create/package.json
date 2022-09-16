@@ -1,6 +1,6 @@
 {
   "name": "@bani-cli/create",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "> TODO: description",
   "author": "IamBani <13972186114@139.com>",
   "homepage": "https://github.com/IamBani/bani-cli#readme",
@@ -24,6 +24,6 @@
     "url": "https://github.com/IamBani/bani-cli/issues"
   },
   "dependencies": {
-    "@bani-cli/package":"1.0.2"
+    "@bani-cli/package": "^1.0.3"
   }
 }
