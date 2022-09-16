@@ -1,6 +1,6 @@
 {
   "name": "@bani-cli/core",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "> TODO: description",
   "author": "IamBani <13972186114.com>",
   "homepage": "",
@@ -23,9 +23,9 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@bani-cli/commands": "^1.0.4",
-    "@bani-cli/get-npm-info": "^1.0.3",
-    "@bani-cli/log": "^1.0.3",
+    "@bani-cli/commands": "^1.0.5",
+    "@bani-cli/get-npm-info": "^1.0.5",
+    "@bani-cli/log": "^1.0.5",
     "@bani-cli/utils": "^1.0.3",
     "chalk": "4.1.2",
     "dotenv": "16.0.2",

@@ -1,6 +1,6 @@
 {
   "name": "@bani-cli/commands",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "> TODO: description",
   "author": "bani <13972186114@139.com>",
   "homepage": "https://github.com/IamBani/bani-cli#readme",
@@ -27,8 +27,8 @@
     "url": "https://github.com/IamBani/bani-cli/issues"
   },
   "dependencies": {
-    "@bani-cli/create": "^1.0.4",
-    "@bani-cli/log": "^1.0.3",
+    "@bani-cli/create": "^1.0.5",
+    "@bani-cli/log": "^1.0.5",
     "chalk": "4.1.2",
     "commander": "^9.4.0",
     "leven": "3.1.0"

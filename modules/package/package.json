@@ -1,6 +1,6 @@
 {
   "name": "@bani-cli/package",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "> TODO: description",
   "author": "IamBani <13972186114@139.com>",
   "homepage": "https://github.com/IamBani/bani-cli#readme",
@@ -27,7 +27,7 @@
     "url": "https://github.com/IamBani/bani-cli/issues"
   },
   "dependencies": {
-    "@bani-cli/get-npm-info": "^1.0.3",
+    "@bani-cli/get-npm-info": "^1.0.5",
     "@bani-cli/utils": "^1.0.3",
     "fs-extra": "10.1.0",
     "npminstall": "5.8.0",
