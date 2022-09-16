@@ -17,6 +17,8 @@ async function create (name, options) {
   const homePath = process.env.cliHome
   const createName = arguments[2]?.name()
   const packageName = SETTINGS[createName]
+  const packageVersion = '1.0.1' 
+
   if (!targetPath) {
     targetPath = path.resolve(homePath,CACHE_DIR)
     storeDir = path.resolve(targetPath, 'node_modules') 
@@ -25,10 +27,10 @@ async function create (name, options) {
       storeDir,
       homePath,
       packageName,
-      packageVersion:'latest'
+      packageVersion,
     })
-    if (pgk.exists()) {
-    
+    if (await pgk.exists()) {
+      await pgk.update()
     } else {
      await pgk.install()
     }
