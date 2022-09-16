@@ -28,6 +28,5 @@
   },
   "dependencies": {
     "@bani-cli/package": "^1.0.5"
-  },
-  "gitHead": "af1fd36e897e683d58ffa34a62cdab22be69cbe2"
+  }
 }

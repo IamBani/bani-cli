@@ -40,9 +40,7 @@ class Packages {
   }
   async exists () {
     if (this.storeDir) {
-      console.log(this.packageVersion);
       await this.prepare()
-      console.log(pathExists.sync(this.cacheFilePath));
       return pathExists.sync(this.cacheFilePath)
     } else {
       return pathExists.sync(this.targetPath)
@@ -68,10 +66,10 @@ class Packages {
       return npminstall({
         root: this.targetPath,
         storeDir: this.storePath,
-        registry: getRegistry(),
+        registry: getRegistry(true),
         pkgs: [{
           name: this.packageName,
-          version: latestFilePath
+          version: latestPackageVersion
         }]
       })
     }

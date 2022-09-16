@@ -17,7 +17,7 @@ async function create (name, options) {
   const homePath = process.env.cliHome
   const createName = arguments[2]?.name()
   const packageName = SETTINGS[createName]
-  const packageVersion = '1.0.1' 
+  const packageVersion = '1.0.2' 
 
   if (!targetPath) {
     targetPath = path.resolve(homePath,CACHE_DIR)

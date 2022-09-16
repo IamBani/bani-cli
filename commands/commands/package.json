@@ -32,6 +32,5 @@
     "chalk": "4.1.2",
     "commander": "^9.4.0",
     "leven": "3.1.0"
-  },
-  "gitHead": "af1fd36e897e683d58ffa34a62cdab22be69cbe2"
+  }
 }
