@@ -1,4 +1,4 @@
-const exp = ['commands', 'core', 'module', 'utils']
+const exp = ['packages/commands', 'packages/core', 'packages/module', 'packages/utils']
 
 
 module.exports = {

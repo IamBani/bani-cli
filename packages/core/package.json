@@ -1,0 +1,36 @@
+{
+  "name": "@bani-cli/core",
+  "version": "1.0.6-alpha.0",
+  "description": "> TODO: description",
+  "author": "IamBani <13972186114.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "index.js",
+  "bin": {
+    "bani": "bin/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@bani-cli/commands":"workspace:*",
+    "@bani-cli/utils":"workspace:*",
+    "chalk": "4.1.2",
+    "dotenv": "16.0.2",
+    "import-local": "^3.1.0",
+    "minimist": "1.2.6",
+    "npmlog": "^6.0.1",
+    "root-check": "1.0.0",
+    "semver": "^7.3.5"
+  }
+}
