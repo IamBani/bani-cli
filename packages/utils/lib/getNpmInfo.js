@@ -54,7 +54,6 @@ async function getNpmLatestVersion (npmName, registry) {
         return -1
       }
     })
-    console.log(versions);
     return versions[0]
   }
   return null

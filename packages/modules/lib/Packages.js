@@ -24,6 +24,7 @@ class Packages {
     this.cacheFilePathPrefix = this.packageName.replace('/', '_')
   }
   async prepare () {
+    console.log(this.storeDir);
     if (this.storeDir && !pathExists.sync(this.storeDir)) {
       fsExtra.mkdirSync(this.storeDir)
     }
@@ -79,7 +80,7 @@ class Packages {
     if (dir) {
       const pkgFile = require(path.resolve(dir, "package.json"))
       if (pkgFile && pkgFile?.main) {
-        return formatPath(path.resolve(dir, pkgDir.main))
+        return formatPath(path.resolve(dir, pkgFile.main))
       }
     }
     return null
