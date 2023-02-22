@@ -79,8 +79,9 @@ class Packages {
     const dir = pkgDir.sync(this.targetPath)
     if (dir) {
       const pkgFile = require(path.resolve(dir, "package.json"))
-      if (pkgFile && pkgFile?.main) {
-        return formatPath(path.resolve(dir, pkgFile.main))
+      if (pkgFile && (pkgFile?.init || pkgFile?.main)) {
+        const init = pkgFile.init || pkgFile.main
+        return formatPath(path.resolve(dir,init))
       }
     }
     return null

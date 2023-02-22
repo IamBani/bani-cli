@@ -51,7 +51,7 @@ async function create (name, options) {
   const rootFile = pgk.getRootFilePath()
   console.log(rootFile);
   if (rootFile) {
-    require(rootFile)()
+     typeof require(rootFile) ==='function'? require(rootFile).apply(null,Array.from(arguments)):require(rootFile).init.apply(null,Array.from(arguments))
   }
 }
 
