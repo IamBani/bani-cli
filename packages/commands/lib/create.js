@@ -1,12 +1,13 @@
 'use strict';
-
+const cp = require("child_process")
 const path = require("path")
 
 const pathExists = require("path-exists")
 const fsExtra = require("fs-extra")
+const chalk = require('chalk')
 
 const { Packages } = require("@bani-cli/modules")
-
+const { npmlog } =require('@bani-cli/utils')
 const SETTINGS = {
   create: '@bani-cli/core'
 }
@@ -51,7 +52,24 @@ async function create (name, options) {
   const rootFile = pgk.getRootFilePath()
   console.log(rootFile);
   if (rootFile) {
-     typeof require(rootFile) ==='function'? require(rootFile).apply(null,Array.from(arguments)):require(rootFile).init.apply(null,Array.from(arguments))
+   const code =''
+   const child = cp.spawn('node',['-e',code], {
+      stdio:'inherit'
+   })
+    child.on('error', err => {
+      npmlog.error(chalk.red(`${err.message}`));
+      process.exit(1)
+    })
+    child.on('exit', e => {
+      npmlog.verbose('success:'+e)
+      process.exit(e)
+    })
+    try {
+      typeof require(rootFile) ==='function'? require(rootFile).apply(null,Array.from(arguments)):require(rootFile).init.apply(null,Array.from(arguments))
+    } catch (err) {
+      npmlog.error(chalk.red(`${err.message}`));
+    }
+    
   }
 }
 

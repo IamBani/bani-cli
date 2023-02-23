@@ -70,12 +70,14 @@ importers:
   packages/modules:
     specifiers:
       '@bani-cli/utils': workspace:*
+      chalk: 4.1.2
       fs-extra: 10.1.0
       npminstall: 5.8.0
       path-exists: 4.0.0
       pkg-dir: 5.0.0
     dependencies:
       '@bani-cli/utils': link:../utils
+      chalk: 4.1.2
       fs-extra: 10.1.0
       npminstall: 5.8.0
       path-exists: 4.0.0
