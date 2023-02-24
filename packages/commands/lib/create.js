@@ -65,7 +65,7 @@ async function create (name, options) {
       })
       arg[arg.length-1] = o
       const code = `(()=> {
-        typeof require(${rootFile}) === 'function' ? require(${rootFile}).apply(null,${JSON.stringify(arg)}) : require(${rootFile}).init.apply(null, ${JSON.stringify(arg)})
+        typeof require('${rootFile}') === 'function' ? require('${rootFile}').apply(null,${JSON.stringify(arg)}) : require('${rootFile}').init.apply(null, ${JSON.stringify(arg)})
       })()`
       const child = cp.spawn('node', ['-e',code], {
         stdio: 'inherit',
