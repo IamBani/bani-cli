@@ -7,7 +7,7 @@ const fsExtra = require("fs-extra")
 const chalk = require('chalk')
 
 const { Packages } = require("@bani-cli/modules")
-const { npmlog } =require('@bani-cli/utils')
+const { npmlog } = require('@bani-cli/utils')
 const SETTINGS = {
   create: '@bani-cli/core'
 }
@@ -27,8 +27,8 @@ async function create (name, options) {
   if (!targetPath) {
     targetPath = path.resolve(homePath, CACHE_DIR)
     if (!pathExists.sync(targetPath)) {
-        fsExtra.mkdirSync(targetPath)
-      }
+      fsExtra.mkdirSync(targetPath)
+    }
     storeDir = path.resolve(targetPath, 'node_modules')
     pgk = new Packages({
       targetPath,
@@ -52,24 +52,37 @@ async function create (name, options) {
   const rootFile = pgk.getRootFilePath()
   console.log(rootFile);
   if (rootFile) {
-   const code =''
-   const child = cp.spawn('node',['-e',code], {
-      stdio:'inherit'
-   })
-    child.on('error', err => {
-      npmlog.error(chalk.red(`${err.message}`));
-      process.exit(1)
-    })
-    child.on('exit', e => {
-      npmlog.verbose('success:'+e)
-      process.exit(e)
-    })
     try {
-      typeof require(rootFile) ==='function'? require(rootFile).apply(null,Array.from(arguments)):require(rootFile).init.apply(null,Array.from(arguments))
+    
+     
+      const arg = Array.from(arguments)
+      const cmd = arg.at(-1)
+      const o = Object.create(null)
+      Object.keys(cmd).forEach(item => {
+        if (cmd.hasOwnProperty(item) && !item.startsWith("_") && item !== 'parent') {
+          o[item] = cmd[item]
+        }
+      })
+      arg[arg.length-1] = o
+      const code = `(()=> {
+        typeof require(${rootFile}) === 'function' ? require(${rootFile}).apply(null,${JSON.stringify(arg)}) : require(${rootFile}).init.apply(null, ${JSON.stringify(arg)})
+      })()`
+      const child = cp.spawn('node', ['-e',code], {
+        stdio: 'inherit',
+      })
+      child.on('error', err => {
+        npmlog.error(chalk.red(`${err.message}`));
+        process.exit(1)
+      })
+      child.on('exit', e => {
+        npmlog.verbose('success:' + e)
+        process.exit(e)
+      })
+      
     } catch (err) {
       npmlog.error(chalk.red(`${err.message}`));
     }
-    
+
   }
 }
 
