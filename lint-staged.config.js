@@ -1,7 +1,7 @@
-const exp = ['packages/commands', 'packages/core', 'packages/module', 'packages/utils']
+const exp = ['packages/**/*']
 
 
 module.exports = {
-    [`{${exp.toString()}}.{js,jsx,ts,tsx}`]: ["prettier --write .", "eslint  --fix"],
+    "packages/**/*.{js,jsx,ts,tsx}": ["prettier --write .", "eslint  --fix"],
     ".md": ["prettier --write ."]
 }
