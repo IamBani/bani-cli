@@ -1,19 +1,19 @@
-'use strict';
-const cp = require("child_process")
-const path = require("path")
+'use strict'
+const cp = require('child_process')
+const path = require('path')
 
-const pathExists = require("path-exists")
-const fsExtra = require("fs-extra")
+const pathExists = require('path-exists')
+const fsExtra = require('fs-extra')
 const chalk = require('chalk')
 
-const { Packages } = require("@bani-cli/modules")
+const { Packages } = require('@bani-cli/modules')
 const { npmlog } = require('@bani-cli/utils')
 const SETTINGS = {
-  create: '@bani-cli/core'
+  create: '@bani-cli/core',
 }
 const CACHE_DIR = 'dependencies'
-async function create (name, options) {
-  let pgk;
+async function create() {
+  let pgk
   const optionValues = arguments[2]?.parent?._optionValues
   let targetPath = optionValues?.targetPath
 
@@ -34,7 +34,7 @@ async function create (name, options) {
       storeDir,
       homePath,
       packageName,
-      packageVersion
+      packageVersion,
     })
     if (await pgk.exists()) {
       await pgk.update()
@@ -45,50 +45,49 @@ async function create (name, options) {
     pgk = new Packages({
       targetPath,
       packageName,
-      packageVersion
+      packageVersion,
     })
   }
   const rootFile = pgk.getRootFilePath()
-  console.log(rootFile);
+  console.log(rootFile)
   if (rootFile) {
-    try { 
+    try {
       const arg = Array.from(arguments)
       const cmd = arg.at(-1)
       const o = Object.create(null)
-      Object.keys(cmd).forEach(item => {
-        if (cmd.hasOwnProperty(item) && !item.startsWith("_") && item !== 'parent') {
+      Object.keys(cmd).forEach((item) => {
+        if (!item.startsWith('_') && item !== 'parent') {
           o[item] = cmd[item]
         }
       })
-      arg[arg.length-1] = o
+      arg[arg.length - 1] = o
       const code = `(()=> {
-        typeof require('${rootFile}') === 'function' ? require('${rootFile}').apply(null,${JSON.stringify(arg)}) : require('${rootFile}').init.apply(null, ${JSON.stringify(arg)})
+        typeof require('${rootFile}') === 'function' ? require('${rootFile}').apply(null,${JSON.stringify(
+        arg
+      )}) : require('${rootFile}').init.apply(null, ${JSON.stringify(arg)})
       })()`
-      const child = cp.spawn('node', ['-e',code], {
+      const child = cp.spawn('node', ['-e', code], {
         stdio: 'inherit',
       })
-      child.on('error', err => {
-        npmlog.error(chalk.red(`${err.message}`));
+      child.on('error', (err) => {
+        npmlog.error(chalk.red(`${err.message}`))
         process.exit(1)
       })
-      child.on('exit', e => {
+      child.on('exit', (e) => {
         npmlog.verbose('success:' + e)
         process.exit(e)
       })
-      
+
       // function spawn(command,args,options ={}){
       //   const win32 = process.platform === 'win32'
       //   const cmd = win32?'cmd':command;
       //   const cmdArgs = win32 ? ['/c'].concat(command,args):args
       //   return cp.spawn(cmd,cmdArgs,options)
       // }
-
     } catch (err) {
-      npmlog.error(chalk.red(`${err.message}`));
+      npmlog.error(chalk.red(`${err.message}`))
     }
-
   }
 }
 
-
-module.exports = create;
+module.exports = create

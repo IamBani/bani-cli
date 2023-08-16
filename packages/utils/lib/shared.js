@@ -1,46 +1,45 @@
-
-function base (value) {
+function base(value) {
   return Object.prototype.toString.call(value)
 }
 
-function isObject (value) {
+function isObject(value) {
   return base(value) === '[object Object]'
 }
 
-function isString (value) {
- return base(value) === '[object String]'
+function isString(value) {
+  return base(value) === '[object String]'
 }
-function isNumber (value) {
+function isNumber(value) {
   return base(value) === '[object Number]'
 }
-function isBoolean (value) {
+function isBoolean(value) {
   return base(value) === '[object Boolean]'
 }
-function isArray (value) {
+function isArray(value) {
   return base(value) === '[object Array]'
 }
 
-function isNull (value) {
+function isNull(value) {
   return base(value) === '[object Null]'
 }
-function isUndefined (value) {
+function isUndefined(value) {
   return base(value) === '[object Undefined]'
 }
 
-function isFunction (value) {
+function isFunction(value) {
   return base(value) === '[object Function]'
 }
-function isDate (value) {
+function isDate(value) {
   return base(value) === '[object Date]'
 }
-function isRegExp (value) {
+function isRegExp(value) {
   return base(value) === '[object RegExp]'
 }
-function isSymbol (value) { 
+function isSymbol(value) {
   return base(value) === '[object Symbol]'
 }
-function isArguments (value) {
-  return base(value) ===  '[object Arguments]' && typeof value === 'object'
+function isArguments(value) {
+  return base(value) === '[object Arguments]' && typeof value === 'object'
 }
 module.exports = {
   isObject,
@@ -54,5 +53,5 @@ module.exports = {
   isUndefined,
   isRegExp,
   isSymbol,
-  isArguments
+  isArguments,
 }

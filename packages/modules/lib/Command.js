@@ -1,6 +1,6 @@
-const {npmlog,isArguments} = require('@bani-cli/utils')
+const { npmlog, isArguments } = require('@bani-cli/utils')
 const chalk = require('chalk')
-class Command{
+class Command {
   constructor(arg) {
     if (!arg) {
       throw new Error('参数不能为空')
@@ -11,32 +11,36 @@ class Command{
     this._arg = arg
     this._cmd = null
     this._argv = null
-    new Promise((resolve,reject) => {
+    new Promise((resolve, reject) => {
       const chain = Promise.resolve()
-      chain.then(() => {
-        this.initArg()
-      }).then(() => {
-        this.init()
-      }).then(() => {
-        this.exce()
-      }).catch(err => {
-        npmlog.error(chalk.red(`${err.message}`));
-      })
+      chain
+        .then(() => {
+          this.initArg()
+        })
+        .then(() => {
+          this.init()
+        })
+        .then(() => {
+          this.exce()
+        })
+        .catch((err) => {
+          npmlog.error(chalk.red(`${err.message}`))
+        })
     })
   }
-  initArg () {
+  initArg() {
     const arg = Array.from(this._arg)
     this._cmd = arg.at(-1)
     this._argv = arg.slice(0, arg.length - 1)
   }
-  init(){
-   throw new Error('必须实现init方法')
+  init() {
+    throw new Error('必须实现init方法')
   }
-  exce () {
+  exce() {
     throw new Error('必须实现exce方法')
   }
 }
 
 module.exports = {
-  Command
+  Command,
 }

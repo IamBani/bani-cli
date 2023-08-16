@@ -1,9 +1,5 @@
-'use strict';
+'use strict'
 
-[
-  'commands',
-  'create',
-  'init'
-].forEach(m => {
+;['commands', 'create', 'init'].forEach((m) => {
   Object.assign(exports, require(`./lib/${m}`))
 })

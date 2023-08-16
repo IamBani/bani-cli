@@ -1,11 +1,16 @@
-'use strict';
-const path = require("path")
-const pathExists = require("path-exists")
-const fsExtra = require("fs-extra")
-const npminstall = require("npminstall")
-const pkgDir = require('pkg-dir');
+'use strict'
+const path = require('path')
+const pathExists = require('path-exists')
+const fsExtra = require('fs-extra')
+const npminstall = require('npminstall')
+const pkgDir = require('pkg-dir')
 
-const { isObject, formatPath,getRegistry, getNpmLatestVersion } = require("@bani-cli/utils");
+const {
+  isObject,
+  formatPath,
+  getRegistry,
+  getNpmLatestVersion,
+} = require('@bani-cli/utils')
 class Packages {
   constructor(options) {
     if (!options || !isObject(options)) {
@@ -23,7 +28,7 @@ class Packages {
 
     this.cacheFilePathPrefix = this.packageName.replace('/', '_')
   }
-  async prepare () {
+  async prepare() {
     if (this.storeDir && !pathExists.sync(this.storeDir)) {
       fsExtra.mkdirSync(this.storeDir)
     }
@@ -31,13 +36,19 @@ class Packages {
       this.packageVersion = await getNpmLatestVersion(this.packageName)
     }
   }
-  get cacheFilePath () {
-    return path.resolve(this.storeDir, `_${this.cacheFilePathPrefix}@${this.packageVersion}@${this.packageName}`)
+  get cacheFilePath() {
+    return path.resolve(
+      this.storeDir,
+      `_${this.cacheFilePathPrefix}@${this.packageVersion}@${this.packageName}`
+    )
   }
-  getSpecificCacheFilePath (packageVersion) {
-    return path.resolve(this.storeDir,`_${this.cacheFilePathPrefix}@${packageVersion}@${this.packageName}`)
+  getSpecificCacheFilePath(packageVersion) {
+    return path.resolve(
+      this.storeDir,
+      `_${this.cacheFilePathPrefix}@${packageVersion}@${this.packageName}`
+    )
   }
-  async exists () {
+  async exists() {
     if (this.storeDir) {
       await this.prepare()
       return pathExists.sync(this.cacheFilePath)
@@ -45,19 +56,21 @@ class Packages {
       return pathExists.sync(this.targetPath)
     }
   }
-  async install () {
+  async install() {
     await this.prepare()
     return npminstall({
       root: this.targetPath,
       storeDir: this.storePath,
       registry: getRegistry(),
-      pkgs: [{
-        name: this.packageName,
-        version: this.packageVersion
-      }]
+      pkgs: [
+        {
+          name: this.packageName,
+          version: this.packageVersion,
+        },
+      ],
     })
   }
-  async update () {
+  async update() {
     await this.prepare()
     const latestPackageVersion = await getNpmLatestVersion(this.packageName)
     const latestFilePath = this.getSpecificCacheFilePath(latestPackageVersion)
@@ -66,35 +79,29 @@ class Packages {
         root: this.targetPath,
         storeDir: this.storePath,
         registry: getRegistry(true),
-        pkgs: [{
-          name: this.packageName,
-          version: latestPackageVersion
-        }]
+        pkgs: [
+          {
+            name: this.packageName,
+            version: latestPackageVersion,
+          },
+        ],
       })
     }
     return latestFilePath
   }
-  getRootFilePath () {
+  getRootFilePath() {
     const dir = pkgDir.sync(this.targetPath)
     if (dir) {
-      const pkgFile = require(path.resolve(dir, "package.json"))
+      const pkgFile = require(path.resolve(dir, 'package.json'))
       if (pkgFile && (pkgFile?.init || pkgFile?.main)) {
         const init = pkgFile.init || pkgFile.main
-        return formatPath(path.resolve(dir,init))
+        return formatPath(path.resolve(dir, init))
       }
     }
     return null
   }
-
 }
 
-
-
-
 module.exports = {
-  Packages
-};
-
-
-
-
+  Packages,
+}

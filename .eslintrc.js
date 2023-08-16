@@ -1,13 +1,19 @@
 module.exports = {
   env: {
-    node:true
+    commonjs: true,
+    es2021: true,
+    node: true,
   },
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
+  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
+  plugins: ['prettier'],
+  overrides: [],
+  globals: {
+    process: true,
+  },
+  parserOptions: {
+    ecmaVersion: 'latest',
   },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-  }
+    quotes: ['error', 'single'],
+  },
 }
