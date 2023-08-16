@@ -6,8 +6,7 @@
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.21.0",
-    "lerna": "^5.4.0"
+    "eslint": "^8.21.0"
   },
   "dependencies": {
     "commitizen": "^4.2.5",

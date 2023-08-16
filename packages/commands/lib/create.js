@@ -11,7 +11,6 @@ const { npmlog } = require('@bani-cli/utils')
 const SETTINGS = {
   create: '@bani-cli/core'
 }
-
 const CACHE_DIR = 'dependencies'
 async function create (name, options) {
   let pgk;
@@ -52,9 +51,7 @@ async function create (name, options) {
   const rootFile = pgk.getRootFilePath()
   console.log(rootFile);
   if (rootFile) {
-    try {
-    
-     
+    try { 
       const arg = Array.from(arguments)
       const cmd = arg.at(-1)
       const o = Object.create(null)
@@ -79,6 +76,13 @@ async function create (name, options) {
         process.exit(e)
       })
       
+      // function spawn(command,args,options ={}){
+      //   const win32 = process.platform === 'win32'
+      //   const cmd = win32?'cmd':command;
+      //   const cmdArgs = win32 ? ['/c'].concat(command,args):args
+      //   return cp.spawn(cmd,cmdArgs,options)
+      // }
+
     } catch (err) {
       npmlog.error(chalk.red(`${err.message}`));
     }

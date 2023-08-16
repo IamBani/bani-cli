@@ -3,6 +3,8 @@ const os = require('os')
 const path = require('path')
 const fs = require('fs');
 
+const fsExtra = require("fs-extra")
+const pathExists = require("path-exists")
 const chalk = require('chalk')
 const semver = require('semver')
 const rootCheck = require('root-check')
@@ -66,6 +68,9 @@ function createDefaultConfig () {
     cliConfig['cliHome'] = path.join(userHome,process.env.CLI_HOME)
   } else {
     cliConfig['cliHome'] = path.join(userHome,DEFAULT_CLI_HOME)
+  }
+  if (!pathExists.sync(cliConfig['cliHome'])) {
+    fsExtra.mkdirSync(cliConfig['cliHome'])
   }
   for (const key in cliConfig) {
     process.env[key] = cliConfig[key]

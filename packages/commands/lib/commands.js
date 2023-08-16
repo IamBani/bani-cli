@@ -17,6 +17,7 @@ function commands (pkg) {
     .description('create a new project powered by bani-cli')
     .usage('<app-name>')
     .option('-f, --force','是否强制克隆')
+    .option('-d, --des','描述')
     .action(function (name, options) {
       require("./create")(...arguments)
     }).showHelpAfterError()

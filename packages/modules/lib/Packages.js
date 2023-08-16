@@ -24,7 +24,6 @@ class Packages {
     this.cacheFilePathPrefix = this.packageName.replace('/', '_')
   }
   async prepare () {
-    console.log(this.storeDir);
     if (this.storeDir && !pathExists.sync(this.storeDir)) {
       fsExtra.mkdirSync(this.storeDir)
     }
