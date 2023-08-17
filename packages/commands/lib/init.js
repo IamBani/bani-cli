@@ -85,27 +85,48 @@ class InitCommand extends Command {
           ],
         },
       ])
-      const { plugins } = await inquirer.prompt([
-        {
-          type: 'checkbox',
-          name: 'plugins',
-          message: '请选择项目框架',
-          choices: [
-            { name: 'babel', value: 'babel', checked: true },
-            { name: 'jsx/tsx', value: 'jsx/tsx' },
-            { name: 'vue-router', value: 'vue-router' },
-            version === 'v3'
-              ? { name: 'typescript', value: 'typescript' }
-              : null,
-            version === 'v3'
-              ? { name: 'pinia', value: 'pinia' }
-              : { name: 'vuex', value: 'vuex' },
-          ].filter(Boolean),
-        },
-      ])
+      const { plugins, cssType } = await inquirer.prompt(
+        [
+          {
+            type: 'checkbox',
+            name: 'plugins',
+            message: '请选择项目框架',
+            choices: [
+              { name: 'babel', value: 'babel', checked: true },
+              { name: 'jsx/tsx', value: 'jsx/tsx' },
+              { name: 'vue-router', value: 'vue-router' },
+              version === 'v3'
+                ? { name: 'typescript', value: 'typescript' }
+                : null,
+              version === 'v3'
+                ? { name: 'pinia', value: 'pinia' }
+                : { name: 'vuex', value: 'vuex' },
+            ].filter(Boolean),
+          },
+          type === 'h5'
+            ? {
+                type: 'list',
+                name: 'cssType',
+                message: '请选择h5的单位尺寸',
+                choices: [
+                  {
+                    name: 'rem',
+                    value: 'rem',
+                  },
+                  {
+                    name: 'vh/vw',
+                    value: 'vh/vw',
+                  },
+                  { name: 'none', value: 'none' },
+                ],
+              }
+            : null,
+        ].filter(Boolean),
+      )
       const style = await this.getPretreatment()
-      userChoose = { ...userChoose, style, plugins, version }
+      userChoose = { ...userChoose, style, plugins, version, cssType }
     } else {
+      // todo
     }
     userChoose = { ...userChoose, type, engine }
     console.log(userChoose)
