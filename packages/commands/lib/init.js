@@ -39,13 +39,91 @@ class InitCommand extends Command {
             message: '当前文件夹不为空是否继续创建项目？',
           },
         ])
-        if (answer.select) {
-          fsExtra.emptyDirSync(localPath)
+        if (!answer.select) {
+          return false
         }
+        fsExtra.emptyDirSync(localPath)
       }
+    }
+    return true
+  }
+  async getProjectType() {
+    let userChoose = {}
+    const { type, engine } = await inquirer.prompt([
+      {
+        type: 'list',
+        name: 'type',
+        message: '请选择项目类型',
+        default: 'pc',
+        choices: [
+          { name: 'pc', value: 'pc' },
+          { name: 'h5', value: 'h5' },
+          { name: 'uniapp', value: 'uniapp' },
+        ],
+      },
+      {
+        type: 'list',
+        name: 'engine',
+        message: '请选择项目框架',
+        default: 'vue',
+        choices: [
+          { name: 'vue', value: 'vue' },
+          { name: 'react', value: 'react' },
+        ],
+      },
+    ])
+    if (engine === 'vue') {
+      const { version } = await inquirer.prompt([
+        {
+          type: 'list',
+          name: 'version',
+          message: '请选择项目版本',
+          default: 'v2',
+          choices: [
+            { name: 'vue2', value: 'v2' },
+            { name: 'vue3', value: 'v3' },
+          ],
+        },
+      ])
+      const { plugins } = await inquirer.prompt([
+        {
+          type: 'checkbox',
+          name: 'plugins',
+          message: '请选择项目框架',
+          choices: [
+            { name: 'babel', value: 'babel', checked: true },
+            { name: 'jsx/tsx', value: 'jsx/tsx' },
+            { name: 'vue-router', value: 'vue-router' },
+            version === 'v3'
+              ? { name: 'typescript', value: 'typescript' }
+              : null,
+            version === 'v3'
+              ? { name: 'pinia', value: 'pinia' }
+              : { name: 'vuex', value: 'vuex' },
+          ].filter(Boolean),
+        },
+      ])
+      const style = await this.getPretreatment()
+      userChoose = { ...userChoose, style, plugins, version }
     } else {
     }
+    userChoose = { ...userChoose, type, engine }
+    console.log(userChoose)
   }
+  async getPretreatment() {
+    const { style } = await inquirer.prompt({
+      type: 'list',
+      name: 'style',
+      message: '请选择css预处理器',
+      choices: [
+        { name: 'scss', value: 'scss' },
+        { name: 'less', value: 'less' },
+        { name: 'none', value: 'none' },
+      ],
+    })
+    return style
+  }
+
   async isDirEmpty(path) {
     const fileList = await readdir(path)
     return !!fileList.length
