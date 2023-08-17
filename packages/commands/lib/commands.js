@@ -57,5 +57,5 @@ function uggestCommands(unknownCommand) {
     console.log(`  ` + chalk.red(`Did you mean ${chalk.yellow(suggestion)}?`))
   }
 }
-console.log('done' + 'aa')
+
 module.exports = { commands }
