@@ -1,6 +1,4 @@
 module.exports = {
-  'packages/**!(*node_nodules)/*.js': [
-    'prettier --write .',
-    'eslint packages/** --fix',
-  ],
+  'packages/**/*.js': ['prettier --write .'],
+  '*.js': 'eslint packages/** --fix',
 }

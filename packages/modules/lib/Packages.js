@@ -1,4 +1,4 @@
-'use strict'
+
 const path = require('path')
 const pathExists = require('path-exists')
 const fsExtra = require('fs-extra')
