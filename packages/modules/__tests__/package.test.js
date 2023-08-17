@@ -1,4 +1,4 @@
-
+'use strict'
 
 const package = require('..')
 const assert = require('assert').strict
