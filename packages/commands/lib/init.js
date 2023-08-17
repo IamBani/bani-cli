@@ -44,8 +44,6 @@ class InitCommand extends Command {
         }
       }
     } else {
-      let a = 123
-      console.log(a)
     }
   }
   async isDirEmpty(path) {
