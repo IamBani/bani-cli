@@ -1,4 +1,7 @@
-// eslint-disable-next-line prettier/prettier
-;['commands', 'create', 'init'].forEach((m) => {
-  Object.assign(exports, require(`./lib/${m}`))
-})
+function init() {
+  const list = ['commands', 'create', 'init']
+  list.forEach((m) => {
+    Object.assign(exports, require(`./lib/${m}`))
+  })
+}
+init()
