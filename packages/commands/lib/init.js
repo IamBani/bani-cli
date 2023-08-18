@@ -103,30 +103,13 @@ class InitCommand extends Command {
                 : { name: 'vuex', value: 'vuex' }
             ].filter(Boolean)
           },
-          type === 'h5'
-            ? {
-                type: 'list',
-                name: 'cssType',
-                message: '请选择h5的单位尺寸',
-                choices: [
-                  {
-                    name: 'rem',
-                    value: 'rem'
-                  },
-                  {
-                    name: 'vh/vw',
-                    value: 'vh/vw'
-                  },
-                  { name: 'none', value: 'none' }
-                ]
-              }
-            : null
+          this.getH5(type)
         ].filter(Boolean)
       )
       const style = await this.getPretreatment()
       userChoose = { ...userChoose, style, plugins, version, cssType }
     } else {
-      // todo
+      //react
     }
     userChoose = { ...userChoose, type, engine }
     console.log(userChoose)
@@ -144,7 +127,26 @@ class InitCommand extends Command {
     })
     return style
   }
-
+  getH5(type) {
+    return type === 'h5'
+      ? {
+          type: 'list',
+          name: 'cssType',
+          message: '请选择h5的单位尺寸',
+          choices: [
+            {
+              name: 'rem',
+              value: 'rem'
+            },
+            {
+              name: 'vh/vw',
+              value: 'vh/vw'
+            },
+            { name: 'none', value: 'none' }
+          ]
+        }
+      : null
+  }
   async isDirEmpty(path) {
     const fileList = await readdir(path)
     return !!fileList.length
