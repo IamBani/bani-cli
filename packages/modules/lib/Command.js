@@ -11,7 +11,7 @@ class Command {
     this._arg = arg
     this._cmd = null
     this._argv = null
-    new Promise((resolve, reject) => {
+    new Promise(() => {
       const chain = Promise.resolve()
       chain
         .then(() => {
@@ -42,5 +42,5 @@ class Command {
 }
 
 module.exports = {
-  Command,
+  Command
 }

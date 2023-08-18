@@ -53,5 +53,5 @@ module.exports = {
   isUndefined,
   isRegExp,
   isSymbol,
-  isArguments,
+  isArguments
 }

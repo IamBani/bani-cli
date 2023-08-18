@@ -12,5 +12,5 @@ function index(pkg) {
 
 module.exports = {
   log: index,
-  npmlog,
+  npmlog
 }

@@ -13,5 +13,5 @@ const formatPath = (p) => {
 }
 
 module.exports = {
-  formatPath,
+  formatPath
 }

@@ -36,8 +36,8 @@ class InitCommand extends Command {
             default: false,
             name: 'select',
             type: 'confirm',
-            message: '当前文件夹不为空是否继续创建项目？',
-          },
+            message: '当前文件夹不为空是否继续创建项目？'
+          }
         ])
         if (!answer.select) {
           return false
@@ -58,8 +58,8 @@ class InitCommand extends Command {
         choices: [
           { name: 'pc', value: 'pc' },
           { name: 'h5', value: 'h5' },
-          { name: 'uniapp', value: 'uniapp' },
-        ],
+          { name: 'uniapp', value: 'uniapp' }
+        ]
       },
       {
         type: 'list',
@@ -68,9 +68,9 @@ class InitCommand extends Command {
         default: 'vue',
         choices: [
           { name: 'vue', value: 'vue' },
-          { name: 'react', value: 'react' },
-        ],
-      },
+          { name: 'react', value: 'react' }
+        ]
+      }
     ])
     if (engine === 'vue') {
       const { version } = await inquirer.prompt([
@@ -81,9 +81,9 @@ class InitCommand extends Command {
           default: 'v2',
           choices: [
             { name: 'vue2', value: 'v2' },
-            { name: 'vue3', value: 'v3' },
-          ],
-        },
+            { name: 'vue3', value: 'v3' }
+          ]
+        }
       ])
       const { plugins, cssType } = await inquirer.prompt(
         [
@@ -100,8 +100,8 @@ class InitCommand extends Command {
                 : null,
               version === 'v3'
                 ? { name: 'pinia', value: 'pinia' }
-                : { name: 'vuex', value: 'vuex' },
-            ].filter(Boolean),
+                : { name: 'vuex', value: 'vuex' }
+            ].filter(Boolean)
           },
           type === 'h5'
             ? {
@@ -111,17 +111,17 @@ class InitCommand extends Command {
                 choices: [
                   {
                     name: 'rem',
-                    value: 'rem',
+                    value: 'rem'
                   },
                   {
                     name: 'vh/vw',
-                    value: 'vh/vw',
+                    value: 'vh/vw'
                   },
-                  { name: 'none', value: 'none' },
-                ],
+                  { name: 'none', value: 'none' }
+                ]
               }
-            : null,
-        ].filter(Boolean),
+            : null
+        ].filter(Boolean)
       )
       const style = await this.getPretreatment()
       userChoose = { ...userChoose, style, plugins, version, cssType }
@@ -139,8 +139,8 @@ class InitCommand extends Command {
       choices: [
         { name: 'scss', value: 'scss' },
         { name: 'less', value: 'less' },
-        { name: 'none', value: 'none' },
-      ],
+        { name: 'none', value: 'none' }
+      ]
     })
     return style
   }
@@ -156,5 +156,5 @@ function init() {
 }
 module.exports = {
   init,
-  InitCommand,
+  InitCommand
 }

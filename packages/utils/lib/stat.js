@@ -10,5 +10,5 @@ function isFile(path) {
 }
 
 module.exports = {
-  isFile,
+  isFile
 }
