@@ -106,7 +106,8 @@ class InitCommand extends Command {
                 : { name: 'vuex', value: 'vuex' }
             ].filter(Boolean)
           },
-          this.getH5(type)
+          this.getH5(type),
+          this.getUi(type)
         ].filter(Boolean)
       )
       const style = await this.getPretreatment()
@@ -149,6 +150,45 @@ class InitCommand extends Command {
           ]
         }
       : null
+  }
+
+  getUi(type) {
+    const keyValue = {
+      type: 'list',
+      name: 'uiComponent',
+      message: '请选择ui组件'
+    }
+    return type === 'h5'
+      ? {
+          ...keyValue,
+          choices: [
+            {
+              name: 'vant',
+              value: 'vant'
+            },
+            {
+              name: 'none',
+              value: 'none'
+            }
+          ]
+        }
+      : {
+          ...keyValue,
+          choices: [
+            {
+              name: 'element',
+              value: 'element'
+            },
+            {
+              name: 'antd',
+              value: 'antd'
+            },
+            {
+              name: 'none',
+              value: 'none'
+            }
+          ]
+        }
   }
   async isDirEmpty(path) {
     const fileList = await readdir(path)
