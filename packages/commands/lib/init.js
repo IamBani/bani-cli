@@ -17,9 +17,13 @@ class InitCommand extends Command {
     console.log(this.cmd)
     console.log(this.argv)
   }
-  exce() {
+  async exce() {
     try {
-      this.prepare()
+      let userChoose = {}
+      const result = await this.prepare()
+      if (result) {
+        await this.getProjectType(userChoose)
+      }
     } catch (error) {
       npmlog.error(chalk.red(`${error.message}`))
     }
@@ -47,8 +51,7 @@ class InitCommand extends Command {
     }
     return true
   }
-  async getProjectType() {
-    let userChoose = {}
+  async getProjectType(userChoose) {
     const { type, engine } = await inquirer.prompt([
       {
         type: 'list',
