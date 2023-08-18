@@ -1,4 +1,3 @@
-'use strict'
 const cp = require('child_process')
 const path = require('path')
 
@@ -9,7 +8,7 @@ const chalk = require('chalk')
 const { Packages } = require('@bani-cli/modules')
 const { npmlog } = require('@bani-cli/utils')
 const SETTINGS = {
-  create: '@bani-cli/core',
+  create: '@bani-cli/core'
 }
 const CACHE_DIR = 'dependencies'
 async function create() {
@@ -34,7 +33,7 @@ async function create() {
       storeDir,
       homePath,
       packageName,
-      packageVersion,
+      packageVersion
     })
     if (await pgk.exists()) {
       await pgk.update()
@@ -45,7 +44,7 @@ async function create() {
     pgk = new Packages({
       targetPath,
       packageName,
-      packageVersion,
+      packageVersion
     })
   }
   const rootFile = pgk.getRootFilePath()
@@ -63,11 +62,11 @@ async function create() {
       arg[arg.length - 1] = o
       const code = `(()=> {
         typeof require('${rootFile}') === 'function' ? require('${rootFile}').apply(null,${JSON.stringify(
-        arg
-      )}) : require('${rootFile}').init.apply(null, ${JSON.stringify(arg)})
+          arg
+        )}) : require('${rootFile}').init.apply(null, ${JSON.stringify(arg)})
       })()`
       const child = cp.spawn('node', ['-e', code], {
-        stdio: 'inherit',
+        stdio: 'inherit'
       })
       child.on('error', (err) => {
         npmlog.error(chalk.red(`${err.message}`))

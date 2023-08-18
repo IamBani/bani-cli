@@ -1,4 +1,3 @@
-'use strict'
 const chalk = require('chalk')
 const { Command } = require('commander')
 const leven = require('leven')

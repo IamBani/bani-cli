@@ -1,4 +1,3 @@
-'use strict'
 const path = require('path')
 const pathExists = require('path-exists')
 const fsExtra = require('fs-extra')
@@ -9,7 +8,7 @@ const {
   isObject,
   formatPath,
   getRegistry,
-  getNpmLatestVersion,
+  getNpmLatestVersion
 } = require('@bani-cli/utils')
 class Packages {
   constructor(options) {
@@ -65,9 +64,9 @@ class Packages {
       pkgs: [
         {
           name: this.packageName,
-          version: this.packageVersion,
-        },
-      ],
+          version: this.packageVersion
+        }
+      ]
     })
   }
   async update() {
@@ -82,9 +81,9 @@ class Packages {
         pkgs: [
           {
             name: this.packageName,
-            version: latestPackageVersion,
-          },
-        ],
+            version: latestPackageVersion
+          }
+        ]
       })
     }
     return latestFilePath
@@ -103,5 +102,5 @@ class Packages {
 }
 
 module.exports = {
-  Packages,
+  Packages
 }

@@ -1,5 +1,3 @@
-'use strict'
-
 const axios = require('axios')
 const semver = require('semver')
 const urlJoin = require('url-join')
@@ -72,5 +70,5 @@ module.exports = {
   getNpmVersions,
   getSemverVersions,
   getNpmSemverVersions,
-  getNpmLatestVersion,
+  getNpmLatestVersion
 }

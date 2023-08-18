@@ -1,7 +1,5 @@
-'use strict'
 const os = require('os')
 const path = require('path')
-const fs = require('fs')
 
 const fsExtra = require('fs-extra')
 const pathExists = require('path-exists')
@@ -48,10 +46,9 @@ async function checkGlobalUpdate() {
 
 function checkEnv() {
   const dotpath = path.resolve(os.homedir(), '.env')
-  let config
   if (isFile(dotpath)) {
-    config = dotenv.config({
-      path: dotpath,
+    dotenv.config({
+      path: dotpath
     })
   } else {
     createDefaultConfig()
@@ -62,7 +59,7 @@ function checkEnv() {
 function createDefaultConfig() {
   const userHome = os.homedir()
   const cliConfig = {
-    home: userHome,
+    home: userHome
   }
   if (process.env.CLI_HOME) {
     cliConfig['cliHome'] = path.join(userHome, process.env.CLI_HOME)
